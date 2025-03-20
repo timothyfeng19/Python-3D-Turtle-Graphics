@@ -1,9 +1,9 @@
 import turtle
 import math
 
-window = turtle.Screen()
-window.title = "3D Cube using Python Turtle"
-window.setup(width=1000, height=1000)
+screen = turtle.Screen()
+screen.title = "3D Cube using Python Turtle"
+screen.setup(width=1000, height=1000)
 
 pen = turtle.Turtle()
 pen.hideturtle()
