@@ -20,10 +20,10 @@ def cylind (deg, r, h):
   global rotation_x
   global rotation_y
   
-  if (zoom-int(zz(deg, r, h)) > 0):
+  if (zoom-int(findz(deg, r, h)) > 0):
     return (zoom/(zoom-int(findz(deg, r, h))))*r*math.cos(rotation_y+deg), (zoom/(zoom-int(findz(deg, r,h))))*(r*math.sin(rotation_x)*math.sin(rotation_y + deg)+h*math.cos(rotation_x))
   else:   
-    return false
+    return False
         
 def findz(deg, r, h):
   global rotation_x
