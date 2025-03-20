@@ -1,6 +1,10 @@
 import turtle
 import math
 
+window = turtle.Screen()
+window.title = "3D Cube using Python Turtle"
+window.setup(width=1000, height=1000)
+
 pen = turtle.Turtle()
 pen.hideturtle()
 pen.penup()
@@ -27,3 +31,4 @@ def findz(deg, r, h):
     
   return math.cos(rotation_x)*r*math.sin(rotation_y+deg)-math.sin(rotation_x)*h
 
+turtle.exitonclick()
