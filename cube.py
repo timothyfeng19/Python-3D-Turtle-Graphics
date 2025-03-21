@@ -29,18 +29,18 @@ def findz(deg, r, h):
     
   return math.cos(rotation_x)*r*math.sin(rotation_y+deg)-math.sin(rotation_x)*h
 
-// def side(list):
-//  global cube
+# def side(list):
+#  global cube
   
-//  cube.penup()
-//  cube.goto(coords(list[0]))
-//  cube.pendown()
+#  cube.penup()
+#  cube.goto(coords(list[0]))
+#  cube.pendown()
   
-//  for i in range(len(list)-1):
-//    cube.goto(coords(list[i+1]))
-//  cube.goto(coords(list[0]))
+#  for i in range(len(list)-1):
+#    cube.goto(coords(list[i+1]))
+#  cube.goto(coords(list[0]))
     
-//  cube.penup()
+#  cube.penup()
 
 while (True):
   cube.penup()
