@@ -30,18 +30,19 @@ def findz(deg, r, h):
   return math.cos(rotation_x)*r*math.sin(rotation_y+deg)-math.sin(rotation_x)*h
 
 def side(list):
-  penup()
-  for i in range(len(list)):
-    cube.goto
+  global cube
   
+  cube.penup()
+  cube.goto(coords(list[0]))
+  cube.pendown()
+  
+  for i in range(len(list)-1):
+    cube.goto(coords(list[i+1]))
+  cube.goto(coords(list[0]))
+    
+  cube.penup()
 
 while (True):
-  cube.goto(coords(1, 1, 1))
-  cube.pendown()
-  cube.goto(coords(1, -1, 1))
-  cube.goto(coords(-1, -1, 1))
-  cube.goto(coords(-1, 1, 1))
-  cube.goto(coords(1, 1, 1))
-  cube.penup()
+  side([[1, 1, 1],[1, -1, 1],[-1, -1, 1],[-1, 1, 1]])
 
   turtle.mainloop()
