@@ -52,5 +52,14 @@ while (True):
   cube.goto(coords(1, 1, 1))
   cube.penup()
 
+  cube.penup()
+  cube.goto(coords(1, 1, -1))
+  cube.pendown()
+  cube.goto(coords(1, -1, -1))
+  cube.goto(coords(-1, -1, -1))
+  cube.goto(coords(-1, 1, -1))
+  cube.goto(coords(1, 1, -1))
+  cube.penup()
+
   screen.listen()
   turtle.mainloop()
