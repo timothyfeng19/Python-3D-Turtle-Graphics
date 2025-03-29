@@ -149,8 +149,8 @@ while True:
     rotation_y -= (left + right) * rotation_speed
     distance += (forward + backward) * move_speed
 
-    if distance < 2:
-        distance = 2
+    if distance <= 2:
+        distance = 2 + move_speed
 
     screen.update()
     screen.listen()
