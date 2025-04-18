@@ -17,25 +17,26 @@ down = 0
 left = 0
 right = 0
 forward = 0
+mleft = 0
 backward = 0
-zoom = 500
-distance = 5
+mright = 0
+zoom = 800
 rotation_speed = 0.01
 move_speed = 0.01
+cube_x = 0
+cube_y = 0
+cube_z = 5
 
 def coords(x, y, z):
-    global zoom
-    global distance
-    global rotation_x
-    global rotation_y
+    global zoom, distance, rotation_x, rotation_y, cube_x, cube_y, cube_z
 
     temp_x = x * math.cos(rotation_y) + (y * math.sin(rotation_x) + z * math.cos(rotation_x)) * math.sin(rotation_y)
     temp_y = y * math.cos(rotation_x) - z * math.sin(rotation_x)
     temp_z = -x * math.sin(rotation_y) + (y * math.sin(rotation_x) + z * math.cos(rotation_x)) * math.cos(rotation_y)
 
-    factor = zoom / (-temp_z + distance)
+    factor = zoom / (-temp_z + cube_z)
 
-    return temp_x * factor, temp_y * factor
+    return (temp_x + cube_x) * factor, (temp_y + cube_y) * factor
 
 def draw(list, color):
     global cube
@@ -81,9 +82,17 @@ def move_forward():
     global forward
     forward =  1
 
+def move_left():
+    global mleft
+    mleft =  1
+
 def move_backward():
     global backward
     backward =  -1
+
+def move_right():
+    global mright
+    mright =  -1
 
 def release_up():
     global up
@@ -105,23 +114,35 @@ def release_forward():
     global forward
     forward =  0
 
+def release_mleft():
+    global mleft
+    mleft =  0
+
 def release_backward():
     global backward
     backward =  0
+
+def release_mright():
+    global mright
+    mright =  0
 
 screen.onkeypress(rotate_up, "Up")
 screen.onkeypress(rotate_down, "Down")
 screen.onkeypress(rotate_left, "Left")
 screen.onkeypress(rotate_right, "Right")
 screen.onkeypress(move_forward, "w")
+screen.onkeypress(move_left, "a")
 screen.onkeypress(move_backward, "s")
+screen.onkeypress(move_right, "d")
 
 screen.onkeyrelease(release_up, "Up")
 screen.onkeyrelease(release_down, "Down")
 screen.onkeyrelease(release_left, "Left")
 screen.onkeyrelease(release_right, "Right")
 screen.onkeyrelease(release_forward, "w")
+screen.onkeyrelease(release_mleft, "a")
 screen.onkeyrelease(release_backward, "s")
+screen.onkeyrelease(release_mright, "d")
 
 while True:
     cube.clear()
@@ -143,14 +164,16 @@ while True:
     write("Controls:", -380, -310, "black", 'left', ('Verdana', 15, 'normal'))
     write("← → : rotate left and right", -380, -330, "black", 'left', ('Verdana', 15, 'normal'))
     write("↑ ↓ : rotate up and down (along the red line)", -380, -350, "black", 'left', ('Verdana', 15, 'normal'))
-    write("W S : move the cube forward and backward", -380, -370, "black", 'left', ('Verdana', 15, 'normal'))
+    write("W A S D : move the cube around", -380, -370, "black", 'left', ('Verdana', 15, 'normal'))
 
     rotation_x -= (up + down) * rotation_speed
     rotation_y -= (left + right) * rotation_speed
-    distance += (forward + backward) * move_speed
 
-    if distance <= 2:
-        distance = 2 + move_speed
+    cube_x -= (mleft + mright) * move_speed
+    cube_z += (forward + backward) * move_speed
+
+    if cube_z <= 2:
+        cube_z = 2 + move_speed
 
     screen.update()
     screen.listen()
