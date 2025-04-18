@@ -3,7 +3,7 @@
 Controls:  
 ← → : rotate left and right  
 ↑ ↓ : rotate up and down (red line shows direction)  
-W S : move the cube forward and backward  
+W A S D : move the cube around
 
 Uses rotation matrices to rotate the 3D points. Includes a perspective camera.
 To run, download cube.py and run on your own python interpreter. Requires the python turtle and math module.
