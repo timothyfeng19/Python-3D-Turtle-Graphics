@@ -70,7 +70,7 @@ def rotate_up():
 
 def rotate_down():
     global down
-    down = -1
+    down = 1
 
 def rotate_left():
     global left
@@ -78,7 +78,7 @@ def rotate_left():
 
 def rotate_right():
     global right
-    right = -1
+    right = 1
 
 def move_forward():
     global forward
@@ -90,11 +90,11 @@ def move_left():
 
 def move_backward():
     global backward
-    backward =  -1
+    backward =  1
 
 def move_right():
     global mright
-    mright =  -1
+    mright =  1
 
 def move_up():
     global mup
@@ -102,7 +102,7 @@ def move_up():
 
 def move_down():
     global mdown
-    mdown =  -1
+    mdown =  1
 
 def release_up():
     global up
@@ -189,12 +189,12 @@ while True:
     write("W A S D : move the cube around", -380, -350, "black", 'left', ('Verdana', 15, 'normal'))
     write("Q E : move the cube up and down", -380, -370, "black", 'left', ('Verdana', 15, 'normal'))
 
-    rotation_x -= (up + down) * rotation_speed
-    rotation_y -= (left + right) * rotation_speed
+    rotation_x -= (up - down) * rotation_speed
+    rotation_y -= (left - right) * rotation_speed
 
-    cube_x -= (mleft + mright) * move_speed
-    cube_y += (mup + mdown) * move_speed
-    cube_z += (forward + backward) * move_speed
+    cube_x += (mright - mleft) * move_speed
+    cube_y += (mup - mdown) * move_speed
+    cube_z += (forward - backward) * move_speed
 
     if cube_z <= 2:
         cube_z = 2 + move_speed
