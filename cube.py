@@ -20,6 +20,8 @@ forward = 0
 mleft = 0
 backward = 0
 mright = 0
+mup = 0
+mdown = 0
 zoom = 800
 rotation_speed = 0.01
 move_speed = 0.01
@@ -33,7 +35,7 @@ def coords(x, y, z):
     temp_x = x * math.cos(rotation_y) + (y * math.sin(rotation_x) + z * math.cos(rotation_x)) * math.sin(rotation_y)
     temp_y = y * math.cos(rotation_x) - z * math.sin(rotation_x)
     temp_z = -x * math.sin(rotation_y) + (y * math.sin(rotation_x) + z * math.cos(rotation_x)) * math.cos(rotation_y)
-
+    
     factor = zoom / (-temp_z + cube_z)
 
     return (temp_x + cube_x) * factor, (temp_y + cube_y) * factor
@@ -94,6 +96,14 @@ def move_right():
     global mright
     mright =  -1
 
+def move_up():
+    global mup
+    mup =  1
+
+def move_down():
+    global mdown
+    mdown =  -1
+
 def release_up():
     global up
     up = 0
@@ -126,6 +136,14 @@ def release_mright():
     global mright
     mright =  0
 
+def release_mup():
+    global mup
+    mup =  0
+
+def release_mdown():
+    global mdown
+    mdown =  0
+
 screen.onkeypress(rotate_up, "Up")
 screen.onkeypress(rotate_down, "Down")
 screen.onkeypress(rotate_left, "Left")
@@ -134,6 +152,8 @@ screen.onkeypress(move_forward, "w")
 screen.onkeypress(move_left, "a")
 screen.onkeypress(move_backward, "s")
 screen.onkeypress(move_right, "d")
+screen.onkeypress(move_up, "q")
+screen.onkeypress(move_down, "e")
 
 screen.onkeyrelease(release_up, "Up")
 screen.onkeyrelease(release_down, "Down")
@@ -143,6 +163,8 @@ screen.onkeyrelease(release_forward, "w")
 screen.onkeyrelease(release_mleft, "a")
 screen.onkeyrelease(release_backward, "s")
 screen.onkeyrelease(release_mright, "d")
+screen.onkeyrelease(release_mup, "q")
+screen.onkeyrelease(release_mdown, "e")
 
 while True:
     cube.clear()
@@ -161,15 +183,17 @@ while True:
 
     draw(guide, "red")
 
-    write("Controls:", -380, -310, "black", 'left', ('Verdana', 15, 'normal'))
-    write("← → : rotate left and right", -380, -330, "black", 'left', ('Verdana', 15, 'normal'))
-    write("↑ ↓ : rotate up and down (along the red line)", -380, -350, "black", 'left', ('Verdana', 15, 'normal'))
-    write("W A S D : move the cube around", -380, -370, "black", 'left', ('Verdana', 15, 'normal'))
+    write("Controls:", -380, -290, "black", 'left', ('Verdana', 15, 'normal'))
+    write("← → : rotate left and right", -380, -310, "black", 'left', ('Verdana', 15, 'normal'))
+    write("↑ ↓ : rotate up and down (along the red line)", -380, -330, "black", 'left', ('Verdana', 15, 'normal'))
+    write("W A S D : move the cube around", -380, -350, "black", 'left', ('Verdana', 15, 'normal'))
+    write("Q E : move the cube up and down", -380, -370, "black", 'left', ('Verdana', 15, 'normal'))
 
     rotation_x -= (up + down) * rotation_speed
     rotation_y -= (left + right) * rotation_speed
 
     cube_x -= (mleft + mright) * move_speed
+    cube_y += (mup + mdown) * move_speed
     cube_z += (forward + backward) * move_speed
 
     if cube_z <= 2:
