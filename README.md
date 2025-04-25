@@ -3,7 +3,7 @@
 Controls:  
 ← → : rotate left and right  
 ↑ ↓ : rotate up and down (red line shows direction)  
-W A S D : move the cube around
+W A S D : move the cube around  
 Q E : move the cube up and down
 
 Uses rotation matrices to rotate the 3D points. Includes a perspective camera.
