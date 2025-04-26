@@ -6,5 +6,5 @@ Controls:
 W A S D : move the cube around  
 Q E : move the cube up and down
 
-Uses rotation matrices to rotate the 3D points. Includes a perspective camera.
+Uses rotation matrices to rotate the 3D points. Includes a perspective camera. I still need to implement a way to order the line rendering from front to back.
 To run, download cube.py and run on your own python interpreter. Requires the python turtle and math module.
